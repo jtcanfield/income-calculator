@@ -5,9 +5,9 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      base_income: "",
-      pre_tax_deduct: "",
-      final: "",
+      base_income: 63000,
+      pre_tax_deduct: 7000,
+      pretax: "",
     };
   }
 
@@ -26,8 +26,8 @@ class App extends Component {
 
   submitform(event){
     event.preventDefault();
-    var final = this.state.base_income - this.state.pre_tax_deduct;
-    console.log(final);
+    var pretax = this.state.base_income - this.state.pre_tax_deduct;
+    this.setState({pretax})
   }
 
   render() {
@@ -68,8 +68,7 @@ class App extends Component {
           </div>
         </form>
         <div>
-          <h3>Results</h3>
-          {this.state.final}
+          <p>Pre-Tax Final: {this.state.pretax}</p>
         </div>
       </div>
     );
