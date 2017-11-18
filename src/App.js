@@ -22,24 +22,48 @@ class App extends Component {
     }
   }
 
+  submitform(event){
+    event.preventDefault();
+    console.log("stuff will be here");
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to a Calculator</h1>
+      <div className="container">
+        <header className="text-center">
+          <h1>
+            Welcome to a Calculator
+          </h1>
+          <p>
+            Accounts for pre-tax income, tax-free costs, and taxes to calculate
+            monthly, weekly, and yearly income.
+          </p>
         </header>
-        <form className="enterForm" onSubmit={this.handleFormSubmit}>
+        <form className="form" onSubmit={this.handleFormSubmit}>
           <div className="form-group">
-            <h6>Before :</h6>
-            <input type="username" onChange={this.updateFromField('username')} value={this.state.username} placeholder="user@gmail.org"/>
+            <label>
+              Before:
+            </label>
+            <input type="username" class="form-control"
+            onChange={this.updateFromField('username')}
+            value={this.state.username}
+            placeholder="user@gmail.org"/>
           </div>
           <div className="form-group">
-            <h6>Password:</h6>
-            <input type="password" onChange={this.updateFromField('password')} value={this.state.password} placeholder="********"/>
+            <label>
+              Password:
+            </label>
+            <input type="password" class="form-control"
+            onChange={this.updateFromField('password')}
+            value={this.state.password}
+            placeholder="********"/>
           </div>
           <br/>
           <div className="form-group pull-right">
-            <button className="btn btn-primary btn-lg" type="submit" onClick={event => this.login(event)}>Login</button>
+            <button className="btn btn-primary btn-md"
+            type="submit" onClick={event => this.submitform(event)}>
+              Login
+            </button>
           </div>
         </form>
       </div>
