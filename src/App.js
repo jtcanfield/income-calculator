@@ -14,6 +14,7 @@ class App extends Component {
       taxes_cost: "",
       post_tax_final: "",
       post_tax_final_monthly: "",
+      post_tax_final_weekly: "",
     };
     this.submitform = this.submitform.bind(this)
   }
@@ -41,9 +42,10 @@ class App extends Component {
     taxes_cost.toFixed(2);
     var post_tax_final = pretax - taxes_cost;
     post_tax_final.toFixed(2);
-    var post_tax_final_monthly = post_tax_final / 12;
-    post_tax_final_monthly.toFixed(2);
-    this.setState({pretax_percent_deduct, pretax, taxes_cost, post_tax_final, post_tax_final_monthly})
+    var post_tax_final_monthly = (post_tax_final / 12).toFixed(2);
+    var post_tax_final_weekly = (post_tax_final / 52).toFixed(2);
+    this.setState({pretax_percent_deduct, pretax, taxes_cost, post_tax_final,
+      post_tax_final_monthly, post_tax_final_weekly})
   }
 
   render() {
@@ -98,6 +100,7 @@ class App extends Component {
           <p>Amount taken off by taxes: ${this.state.taxes_cost}</p>
           <p>Post-Tax Final: ${this.state.post_tax_final}</p>
           <p>Post-Tax Final Monthly: ${this.state.post_tax_final_monthly}</p>
+          <p>Post-Tax Final Weekly: ${this.state.post_tax_final_weekly}</p>
         </div>
       </div>
     );
