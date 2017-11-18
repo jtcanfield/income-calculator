@@ -15,11 +15,9 @@ class App extends Component {
       post_tax_final: "",
       post_tax_final_monthly: "",
     };
+    this.submitform = this.submitform.bind(this)
   }
 
-  componentWillMount() {
-
-  }
   componentDidUpdate(){
 
   }
@@ -30,8 +28,7 @@ class App extends Component {
     }
   }
 
-  submitform(event){
-    event.preventDefault();
+  submitform(){
     console.log(this.state.base_income);
     console.log(typeof this.state.base_income);
     var pre_tax_percentage_deductCalc = this.state.pre_tax_percentage_deduct / 100;
@@ -97,7 +94,7 @@ class App extends Component {
           <br/>
           <div className="form-group pull-right">
             <button className="btn btn-primary btn-md"
-            type="submit" onClick={event => this.submitform(event)}>
+            type="button" onClick={this.submitform}>
               Submit
             </button>
           </div>
