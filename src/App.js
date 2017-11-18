@@ -33,12 +33,17 @@ class App extends Component {
   submitform(event){
     event.preventDefault();
     var pre_tax_percentage_deductCalc = this.state.pre_tax_percentage_deduct / 100;
-    var pretax_percent_deduct = this.state.base_income * pre_tax_percentage_deductCalc
+    var pretax_percent_deduct = this.state.base_income * pre_tax_percentage_deductCalc;
+    pretax_percent_deduct.toFixed(2);
     var pretax = this.state.base_income - this.state.pre_tax_deduct - pretax_percent_deduct;
+    pretax.toFixed(2);
     var taxpercentCalc = this.state.tax_percentage / 100;
     var taxes_cost = pretax * taxpercentCalc;
+    taxes_cost.toFixed(2);
     var post_tax_final = pretax - taxes_cost;
-    var post_tax_final_monthly = Math.round(post_tax_final / 12);
+    post_tax_final.toFixed(2);
+    var post_tax_final_monthly = post_tax_final / 12;
+    post_tax_final_monthly.toFixed(2);
     this.setState({pretax_percent_deduct, pretax, taxes_cost, post_tax_final, post_tax_final_monthly})
   }
 
@@ -47,7 +52,7 @@ class App extends Component {
       <div className="container">
         <header className="text-center">
           <h1>
-            Welcome to a Calculator
+            Income Calculator
           </h1>
           <p>
             Accounts for pre-tax income, tax-free costs, and taxes to calculate
