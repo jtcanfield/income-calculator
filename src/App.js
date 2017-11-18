@@ -11,6 +11,7 @@ class App extends Component {
       tax_percentage: 35,
       taxes_cost: "",
       post_tax_final: "",
+      post_tax_final_monthly: "",
     };
   }
 
@@ -33,7 +34,8 @@ class App extends Component {
     var taxpercentCalc = this.state.tax_percentage / 100;
     var taxes_cost = pretax * taxpercentCalc;
     var post_tax_final = pretax - taxes_cost;
-    this.setState({pretax, taxes_cost, post_tax_final})
+    var post_tax_final_monthly = Math.round(post_tax_final / 12);
+    this.setState({pretax, taxes_cost, post_tax_final, post_tax_final_monthly})
   }
 
   render() {
@@ -85,6 +87,7 @@ class App extends Component {
           <p>Pre-Tax Final: {this.state.pretax}</p>
           <p>Amount taken off by taxes: {this.state.taxes_cost}</p>
           <p>Post-Tax Final: {this.state.post_tax_final}</p>
+          <p>Post-Tax Final Monthly: {this.state.post_tax_final_monthly}</p>
         </div>
       </div>
     );
