@@ -5,7 +5,9 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      base_income: "",
+      pre_tax_deduct: "",
+      final: "",
     };
   }
 
@@ -24,7 +26,8 @@ class App extends Component {
 
   submitform(event){
     event.preventDefault();
-    console.log("stuff will be here");
+    var final = this.state.base_income - this.state.pre_tax_deduct;
+    console.log(final);
   }
 
   render() {
@@ -42,30 +45,32 @@ class App extends Component {
         <form className="form" onSubmit={this.handleFormSubmit}>
           <div className="form-group">
             <label>
-              Before:
+              Base Salary:
             </label>
-            <input type="username" class="form-control"
-            onChange={this.updateFromField('username')}
-            value={this.state.username}
-            placeholder="user@gmail.org"/>
+            <input type="text" className="form-control"
+            onChange={this.updateFromField('base_income')}
+            value={this.state.base_income}/>
           </div>
           <div className="form-group">
             <label>
-              Password:
+              Pre-tax deductions (401k, health insurance, donations, etc.):
             </label>
-            <input type="password" class="form-control"
-            onChange={this.updateFromField('password')}
-            value={this.state.password}
-            placeholder="********"/>
+            <input type="text" className="form-control"
+            onChange={this.updateFromField('pre_tax_deduct')}
+            value={this.state.pre_tax_deduct}/>
           </div>
           <br/>
           <div className="form-group pull-right">
             <button className="btn btn-primary btn-md"
             type="submit" onClick={event => this.submitform(event)}>
-              Login
+              Submit
             </button>
           </div>
         </form>
+        <div>
+          <h3>Results</h3>
+          {this.state.final}
+        </div>
       </div>
     );
   }
