@@ -1,5 +1,22 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Work Sans', 'Raleway', sans-serif;
+}
+
+@media (min-width: 1100px){
+  form div label {
+      font-size: 1.3rem;
+  }
+  .table-style {
+    font-size: 1.1rem;
+  }
+}
+
+.table-style table tbody tr div {
+  border-radius: 13px;
+}
+
+.table-dark {
+  background-color: white;
 }
