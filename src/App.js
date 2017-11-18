@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -34,14 +33,14 @@ class App extends Component {
 
   submitform(){
     var pre_tax_percentage_deductCalc = this.state.pre_tax_percentage_deduct / 100;
-    var pretax_percent_deduct = (this.state.base_income * pre_tax_percentage_deductCalc).toFixed(2);
-    var pretax = (this.state.base_income - this.state.pre_tax_deduct - pretax_percent_deduct).toFixed(2);
+    var pretax_percent_deduct = (this.state.base_income * pre_tax_percentage_deductCalc);
+    var pretax = (this.state.base_income - this.state.pre_tax_deduct - pretax_percent_deduct);
     var taxpercentCalc = this.state.tax_percentage / 100;
-    var taxes_cost = (pretax * taxpercentCalc).toFixed(2);
-    var post_tax_final = (pretax - taxes_cost).toFixed(2);
-    var post_tax_final_monthly = (post_tax_final / 12).toFixed(2);
-    var post_tax_final_weekly = (post_tax_final / 52).toFixed(2);
-    var post_tax_final_daily = (post_tax_final_weekly / 5).toFixed(2);
+    var taxes_cost = (pretax * taxpercentCalc);
+    var post_tax_final = (pretax - taxes_cost);
+    var post_tax_final_monthly = (post_tax_final / 12);
+    var post_tax_final_weekly = (post_tax_final / 52);
+    var post_tax_final_daily = (post_tax_final_weekly / 5);
     this.setState({pretax_percent_deduct, pretax, taxes_cost, post_tax_final,
       post_tax_final_monthly, post_tax_final_weekly, post_tax_final_daily})
   }
@@ -49,57 +48,136 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <header className="text-center">
-          <h1>
-            Income Calculator
-          </h1>
-          <p>
-            Accounts for pre-tax income, tax-free costs, and taxes to calculate
-            monthly, weekly, and yearly income.
-          </p>
-        </header>
-        <form className="form" onSubmit={this.handleFormSubmit}>
-          <div className="form-group">
-            <label>
-              Base Yearly Salary:
-            </label>
-            <input type="number" className="form-control"
-            onChange={this.updateFromField('base_income')}
-            value={this.state.base_income}/>
+
+        <div className="card my-3">
+          <div className="card-header text-white bg-success">
+            <header className="text-center">
+              <h1>
+                Income Calculator
+              </h1>
+              <p className="font-weight-bold">
+                Accounts for pre-tax income, tax-free costs, and taxes to calculate
+                yearly, monthly, weekly, and daily income.
+              </p>
+            </header>
           </div>
-          <div className="form-group">
-            <label>
-              Percentage of Salary Pre-tax deductions (Yearly: 401k etc.):
-            </label>
-            <input type="number" className="form-control"
-            onChange={this.updateFromField('pre_tax_percentage_deduct')}
-            value={this.state.pre_tax_percentage_deduct}/>
+          <div className="card-body table-success pb-0">
+            <form className="" onSubmit={this.handleFormSubmit}>
+              <div className="form-group row">
+                <label className="col-sm-10 col-form-label">
+                  Base Yearly Salary:
+                </label>
+                <div className="col-sm-2">
+                  <input type="number" className="form-control"
+                  onChange={this.updateFromField('base_income')}
+                  value={this.state.base_income}/>
+                </div>
+              </div>
+              <div className="form-group row">
+              <label className="col-sm-10 col-form-label">
+                  Percentage of Salary Pre-tax deductions (Yearly: 401k etc.):
+                </label>
+                <div className="col-sm-2">
+                  <input type="number" className="form-control"
+                  onChange={this.updateFromField('pre_tax_percentage_deduct')}
+                  value={this.state.pre_tax_percentage_deduct}/>
+                </div>
+              </div>
+              <div className="form-group row">
+              <label className="col-sm-10 col-form-label">
+                  Non-Percentage Pre-tax deductions (Yearly: 401k extra, health insurance, donations, etc.):
+                </label>
+                <div className="col-sm-2">
+                  <input type="number" className="form-control"
+                  onChange={this.updateFromField('pre_tax_deduct')}
+                  value={this.state.pre_tax_deduct}/>
+                </div>
+              </div>
+              <div className="form-group row">
+              <label className="col-sm-10 col-form-label">
+                  Tax Percentage:
+                </label>
+                <div className="col-sm-2">
+                  <input type="number" className="form-control"
+                  onChange={this.updateFromField('tax_percentage')}
+                  value={this.state.tax_percentage}/>
+                </div>
+              </div>
+            </form>
           </div>
-          <div className="form-group">
-            <label>
-              Non-Percentage Pre-tax deductions (Yearly: 401k extra, health insurance, donations, etc.):
-            </label>
-            <input type="number" className="form-control"
-            onChange={this.updateFromField('pre_tax_deduct')}
-            value={this.state.pre_tax_deduct}/>
-          </div>
-          <div className="form-group">
-            <label>
-              Tax Percentage:
-            </label>
-            <input type="number" className="form-control"
-            onChange={this.updateFromField('tax_percentage')}
-            value={this.state.tax_percentage}/>
-          </div>
-        </form>
-        <div>
-          <p>Amount taken off by percentage deduction: ${this.state.pretax_percent_deduct}</p>
-          <p>Pre-Tax Final: ${this.state.pretax}</p>
-          <p>Amount taken off by taxes: ${this.state.taxes_cost}</p>
-          <p>Post-Tax Final: ${this.state.post_tax_final}</p>
-          <p>Post-Tax Monthly: ${this.state.post_tax_final_monthly}</p>
-          <p>Post-Tax Weekly: ${this.state.post_tax_final_weekly}</p>
-          <p>Post-Tax Daily(assuming 5-day workweek): ${this.state.post_tax_final_daily}</p>
+        </div>
+
+        <div className="table-style">
+          <table className="table table-lg table-dark text-center">
+            <thead className="bg-white text-dark">
+              <tr className="row">
+                <div className="col-3 px-0 py-2 m-0">
+                  Base Salary
+                </div>
+                <div className="col-3 px-0 py-2 m-0 bg-light rounded">
+                  Percentage Deductions
+                </div>
+                <div className="col-3 px-0 py-2 m-0">
+                  Pre-Tax Net Income
+                </div>
+                <div className="col-3 px-0 py-2 m-0 bg-light rounded">
+                  Tax Deductions
+                </div>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="row">
+                <div className="bg-primary font-weight-bold col-3 px-0 py-2 m-0">
+                  {this.state.base_income.toLocaleString('en', { style: 'currency', currency: 'USD' })}
+                </div>
+                <div className="bg-danger col-3 px-0 py-2 m-0">
+                  {this.state.pretax_percent_deduct.toLocaleString('en', { style: 'currency', currency: 'USD' })}
+                </div>
+                <div className="bg-primary col-3 px-0 py-2 m-0">
+                  {this.state.pretax.toLocaleString('en', { style: 'currency', currency: 'USD' })}
+                </div>
+                <div className="bg-danger col-3 px-0 py-2 m-0">
+                  {this.state.taxes_cost.toLocaleString('en', { style: 'currency', currency: 'USD' })}
+                </div>
+              </tr>
+            </tbody>
+          </table>
+
+          <table className="table table-lg table-dark text-center">
+            <thead className="bg-white text-dark">
+              <tr className="row">
+                <div className="col-3 px-0 py-2 m-0">
+                  Post-Tax Yearly Net Income
+                </div>
+                <div className="col-3 px-0 py-2 m-0 bg-light rounded">
+                  Post-Tax Monthly Net Income
+                </div>
+                <div className="col-3 px-0 py-2 m-0">
+                  Post-Tax Weekly Net Income
+                </div>
+                <div className="col-3 px-0 py-2 m-0 bg-light rounded">
+                  Post-Tax Daily Net Income
+                </div>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="row">
+                <div className="bg-success font-weight-bold col-3 px-0 py-2 m-0">
+                  {this.state.post_tax_final.toLocaleString('en', { style: 'currency', currency: 'USD' })}
+                </div>
+                <div className="table-success text-dark col-3 px-0 py-2 m-0">
+                  {this.state.post_tax_final_monthly.toLocaleString('en', { style: 'currency', currency: 'USD' })}
+                </div>
+                <div className="bg-success col-3 px-0 py-2 m-0">
+                  {this.state.post_tax_final_weekly.toLocaleString('en', { style: 'currency', currency: 'USD' })}
+                </div>
+                <div className="table-success text-dark col-3 px-0 py-2 m-0">
+                  {this.state.post_tax_final_daily.toLocaleString('en', { style: 'currency', currency: 'USD' })}
+                </div>
+              </tr>
+            </tbody>
+          </table>
+
         </div>
       </div>
     );
