@@ -5,10 +5,12 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      base_income: 63000,
-      pre_tax_deduct: 7000,
+      base_income: 60000,
+      pre_tax_percentage_deduct: 10,
+      pre_tax_deduct: 500,
+      pretax_percent_deduct: "",
       pretax: "",
-      tax_percentage: 35,
+      tax_percentage: 33,
       taxes_cost: "",
       post_tax_final: "",
       post_tax_final_monthly: "",
@@ -30,12 +32,14 @@ class App extends Component {
 
   submitform(event){
     event.preventDefault();
-    var pretax = this.state.base_income - this.state.pre_tax_deduct;
+    var pre_tax_percentage_deductCalc = this.state.pre_tax_percentage_deduct / 100;
+    var pretax_percent_deduct = this.state.base_income * pre_tax_percentage_deductCalc
+    var pretax = this.state.base_income - this.state.pre_tax_deduct - pretax_percent_deduct;
     var taxpercentCalc = this.state.tax_percentage / 100;
     var taxes_cost = pretax * taxpercentCalc;
     var post_tax_final = pretax - taxes_cost;
     var post_tax_final_monthly = Math.round(post_tax_final / 12);
-    this.setState({pretax, taxes_cost, post_tax_final, post_tax_final_monthly})
+    this.setState({pretax_percent_deduct, pretax, taxes_cost, post_tax_final, post_tax_final_monthly})
   }
 
   render() {
@@ -61,7 +65,15 @@ class App extends Component {
           </div>
           <div className="form-group">
             <label>
-              Pre-tax deductions (401k, health insurance, donations, etc.):
+              Percentage of Salary Pre-tax deductions (401k etc.):
+            </label>
+            <input type="text" className="form-control"
+            onChange={this.updateFromField('pre_tax_percentage_deduct')}
+            value={this.state.pre_tax_percentage_deduct}/>
+          </div>
+          <div className="form-group">
+            <label>
+              Non-Percentage Pre-tax deductions (401k extra, health insurance, donations, etc.):
             </label>
             <input type="text" className="form-control"
             onChange={this.updateFromField('pre_tax_deduct')}
@@ -84,6 +96,7 @@ class App extends Component {
           </div>
         </form>
         <div>
+          <p>Amount taken off by precentage deduction: {this.state.pretax_percent_deduct}</p>
           <p>Pre-Tax Final: {this.state.pretax}</p>
           <p>Amount taken off by taxes: {this.state.taxes_cost}</p>
           <p>Post-Tax Final: {this.state.post_tax_final}</p>
