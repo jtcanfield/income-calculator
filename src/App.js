@@ -24,15 +24,13 @@ class App extends Component {
 
   updateFromField(stateKey) {
       return (event) => {
-      this.setState({[stateKey]: event.target.value},()=>{
+      this.setState({[stateKey]: Number(event.target.value)},()=>{
         this.submitform();
       });
     }
   }
 
   submitform(){
-    console.log(this.state.base_income);
-    console.log(typeof this.state.base_income);
     var pre_tax_percentage_deductCalc = this.state.pre_tax_percentage_deduct / 100;
     var pretax_percent_deduct = this.state.base_income * pre_tax_percentage_deductCalc;
     pretax_percent_deduct.toFixed(2);
