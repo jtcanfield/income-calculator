@@ -57,7 +57,7 @@ class App extends Component {
         <form className="form" onSubmit={this.handleFormSubmit}>
           <div className="form-group">
             <label>
-              Base Salary:
+              Base Yearly Salary:
             </label>
             <input type="text" className="form-control"
             onChange={this.updateFromField('base_income')}
@@ -65,7 +65,7 @@ class App extends Component {
           </div>
           <div className="form-group">
             <label>
-              Percentage of Salary Pre-tax deductions (401k etc.):
+              Percentage of Salary Pre-tax deductions (Yearly: 401k etc.):
             </label>
             <input type="text" className="form-control"
             onChange={this.updateFromField('pre_tax_percentage_deduct')}
@@ -73,7 +73,7 @@ class App extends Component {
           </div>
           <div className="form-group">
             <label>
-              Non-Percentage Pre-tax deductions (401k extra, health insurance, donations, etc.):
+              Non-Percentage Pre-tax deductions (Yearly: 401k extra, health insurance, donations, etc.):
             </label>
             <input type="text" className="form-control"
             onChange={this.updateFromField('pre_tax_deduct')}
