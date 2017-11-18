@@ -24,7 +24,9 @@ class App extends Component {
 
   updateFromField(stateKey) {
       return (event) => {
-      this.setState({[stateKey]: event.target.value});
+      this.setState({[stateKey]: event.target.value},()=>{
+        this.submitform();
+      });
     }
   }
 
