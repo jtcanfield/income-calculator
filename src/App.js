@@ -8,6 +8,9 @@ class App extends Component {
       base_income: 63000,
       pre_tax_deduct: 7000,
       pretax: "",
+      tax_percentage: 35,
+      taxes_cost: "",
+      post_tax_final: "",
     };
   }
 
@@ -27,7 +30,10 @@ class App extends Component {
   submitform(event){
     event.preventDefault();
     var pretax = this.state.base_income - this.state.pre_tax_deduct;
-    this.setState({pretax})
+    var taxpercentCalc = this.state.tax_percentage / 100;
+    var taxes_cost = pretax * taxpercentCalc;
+    var post_tax_final = pretax - taxes_cost;
+    this.setState({pretax, taxes_cost, post_tax_final})
   }
 
   render() {
@@ -59,6 +65,14 @@ class App extends Component {
             onChange={this.updateFromField('pre_tax_deduct')}
             value={this.state.pre_tax_deduct}/>
           </div>
+          <div className="form-group">
+            <label>
+              Tax Percentage:
+            </label>
+            <input type="text" className="form-control"
+            onChange={this.updateFromField('tax_percentage')}
+            value={this.state.tax_percentage}/>
+          </div>
           <br/>
           <div className="form-group pull-right">
             <button className="btn btn-primary btn-md"
@@ -69,6 +83,8 @@ class App extends Component {
         </form>
         <div>
           <p>Pre-Tax Final: {this.state.pretax}</p>
+          <p>Amount taken off by taxes: {this.state.taxes_cost}</p>
+          <p>Post-Tax Final: {this.state.post_tax_final}</p>
         </div>
       </div>
     );
