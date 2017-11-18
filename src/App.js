@@ -33,15 +33,11 @@ class App extends Component {
 
   submitform(){
     var pre_tax_percentage_deductCalc = this.state.pre_tax_percentage_deduct / 100;
-    var pretax_percent_deduct = this.state.base_income * pre_tax_percentage_deductCalc;
-    pretax_percent_deduct.toFixed(2);
-    var pretax = this.state.base_income - this.state.pre_tax_deduct - pretax_percent_deduct;
-    pretax.toFixed(2);
+    var pretax_percent_deduct = (this.state.base_income * pre_tax_percentage_deductCalc).toFixed(2);
+    var pretax = (this.state.base_income - this.state.pre_tax_deduct - pretax_percent_deduct).toFixed(2);
     var taxpercentCalc = this.state.tax_percentage / 100;
-    var taxes_cost = pretax * taxpercentCalc;
-    taxes_cost.toFixed(2);
-    var post_tax_final = pretax - taxes_cost;
-    post_tax_final.toFixed(2);
+    var taxes_cost = (pretax * taxpercentCalc).toFixed(2);
+    var post_tax_final = (pretax - taxes_cost).toFixed(2);
     var post_tax_final_monthly = (post_tax_final / 12).toFixed(2);
     var post_tax_final_weekly = (post_tax_final / 52).toFixed(2);
     this.setState({pretax_percent_deduct, pretax, taxes_cost, post_tax_final,
