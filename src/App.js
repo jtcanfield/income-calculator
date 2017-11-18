@@ -101,7 +101,7 @@ class App extends Component {
           </div>
         </form>
         <div>
-          <p>Amount taken off by precentage deduction: ${this.state.pretax_percent_deduct}</p>
+          <p>Amount taken off by percentage deduction: ${this.state.pretax_percent_deduct}</p>
           <p>Pre-Tax Final: ${this.state.pretax}</p>
           <p>Amount taken off by taxes: ${this.state.taxes_cost}</p>
           <p>Post-Tax Final: ${this.state.post_tax_final}</p>
