@@ -15,6 +15,7 @@ class App extends Component {
       post_tax_final: "",
       post_tax_final_monthly: "",
       post_tax_final_weekly: "",
+      post_tax_final_daily: "",
     };
     this.submitform = this.submitform.bind(this)
   }
@@ -40,8 +41,9 @@ class App extends Component {
     var post_tax_final = (pretax - taxes_cost).toFixed(2);
     var post_tax_final_monthly = (post_tax_final / 12).toFixed(2);
     var post_tax_final_weekly = (post_tax_final / 52).toFixed(2);
+    var post_tax_final_daily = (post_tax_final_weekly / 5).toFixed(2);
     this.setState({pretax_percent_deduct, pretax, taxes_cost, post_tax_final,
-      post_tax_final_monthly, post_tax_final_weekly})
+      post_tax_final_monthly, post_tax_final_weekly, post_tax_final_daily})
   }
 
   render() {
@@ -95,8 +97,9 @@ class App extends Component {
           <p>Pre-Tax Final: ${this.state.pretax}</p>
           <p>Amount taken off by taxes: ${this.state.taxes_cost}</p>
           <p>Post-Tax Final: ${this.state.post_tax_final}</p>
-          <p>Post-Tax Final Monthly: ${this.state.post_tax_final_monthly}</p>
-          <p>Post-Tax Final Weekly: ${this.state.post_tax_final_weekly}</p>
+          <p>Post-Tax Monthly: ${this.state.post_tax_final_monthly}</p>
+          <p>Post-Tax Weekly: ${this.state.post_tax_final_weekly}</p>
+          <p>Post-Tax Daily(assuming 5-day workweek): ${this.state.post_tax_final_daily}</p>
         </div>
       </div>
     );
