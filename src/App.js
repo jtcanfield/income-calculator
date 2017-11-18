@@ -18,8 +18,8 @@ class App extends Component {
     this.submitform = this.submitform.bind(this)
   }
 
-  componentDidUpdate(){
-
+  componentDidMount(){
+    this.submitform();
   }
 
   updateFromField(stateKey) {
@@ -90,13 +90,6 @@ class App extends Component {
             <input type="number" className="form-control"
             onChange={this.updateFromField('tax_percentage')}
             value={this.state.tax_percentage}/>
-          </div>
-          <br/>
-          <div className="form-group pull-right">
-            <button className="btn btn-primary btn-md"
-            type="button" onClick={this.submitform}>
-              Submit
-            </button>
           </div>
         </form>
         <div>
