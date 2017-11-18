@@ -32,6 +32,8 @@ class App extends Component {
 
   submitform(event){
     event.preventDefault();
+    console.log(this.state.base_income);
+    console.log(typeof this.state.base_income);
     var pre_tax_percentage_deductCalc = this.state.pre_tax_percentage_deduct / 100;
     var pretax_percent_deduct = this.state.base_income * pre_tax_percentage_deductCalc;
     pretax_percent_deduct.toFixed(2);
@@ -64,7 +66,7 @@ class App extends Component {
             <label>
               Base Yearly Salary:
             </label>
-            <input type="text" className="form-control"
+            <input type="number" className="form-control"
             onChange={this.updateFromField('base_income')}
             value={this.state.base_income}/>
           </div>
@@ -72,7 +74,7 @@ class App extends Component {
             <label>
               Percentage of Salary Pre-tax deductions (Yearly: 401k etc.):
             </label>
-            <input type="text" className="form-control"
+            <input type="number" className="form-control"
             onChange={this.updateFromField('pre_tax_percentage_deduct')}
             value={this.state.pre_tax_percentage_deduct}/>
           </div>
@@ -80,7 +82,7 @@ class App extends Component {
             <label>
               Non-Percentage Pre-tax deductions (Yearly: 401k extra, health insurance, donations, etc.):
             </label>
-            <input type="text" className="form-control"
+            <input type="number" className="form-control"
             onChange={this.updateFromField('pre_tax_deduct')}
             value={this.state.pre_tax_deduct}/>
           </div>
@@ -88,7 +90,7 @@ class App extends Component {
             <label>
               Tax Percentage:
             </label>
-            <input type="text" className="form-control"
+            <input type="number" className="form-control"
             onChange={this.updateFromField('tax_percentage')}
             value={this.state.tax_percentage}/>
           </div>
